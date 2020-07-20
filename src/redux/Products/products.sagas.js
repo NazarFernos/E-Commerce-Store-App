@@ -1,4 +1,4 @@
-import { auth } from './../../firebase/utils';
+import { auth } from '../../firebase/utils';
 import { takeLatest, put, all, call } from 'redux-saga/effects';
 import productsTypes from './products.types';
 import { handleAddProduct, handleFetchProducts, handleDeleteProduct } from './products.helpers';
