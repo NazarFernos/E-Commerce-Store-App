@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, FC } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { emailSignInStart, googleSignInStart } from '../../redux/User/user.actions';
@@ -6,20 +6,23 @@ import { emailSignInStart, googleSignInStart } from '../../redux/User/user.actio
 import './styles.scss';
 
 import Buttons from '../forms/Button';
-import FormInput from './../forms/FormInput';
+import FormInput from '../forms/FormInput';
 import AuthWrapper from '../AuthWrapper';
 
+type configAuthWrapperType = {
+    headline: string
+}
 
-const mapState = ({ user }) => ({
+const mapState = ({ user }: any) => ({
     currentUser: user.currentUser
 });
 
-const SignIn = props => {
+const SignIn: FC = props => {
     const dispatch = useDispatch();
     const history = useHistory();
     const { currentUser } = useSelector(mapState);
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState<string>('');
+    const [password, setPassword] = useState<string>('');
 
 
     useEffect(() => {
@@ -30,21 +33,21 @@ const SignIn = props => {
 
     }, [currentUser]);
 
-    const resetForm = () => {
+    const resetForm = (): void => {
         setEmail('');
         setPassword('');
     };
 
-    const handleSubmit = e => {
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         dispatch(emailSignInStart({ email, password }));
     }
 
-    const handleGoogleSignIn = () => {
+    const handleGoogleSignIn = (): void => {
         dispatch(googleSignInStart());
     };
 
-    const configAuthWrapper = {
+    const configAuthWrapper: configAuthWrapperType = {
         headline: 'Login'
     };
 

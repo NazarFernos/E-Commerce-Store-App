@@ -4,23 +4,10 @@ import { useSelector } from 'react-redux';
 import { checkUserIsAdmin } from '../../Utils';
 
 import './styles.scss';
+import { UserType } from '../../types';
 
 
-type UserType = {
-    currentUser: {},
-    resetPasswordSuccess: boolean,
-    userErr: string[]
-}
-
-type currentUserType = {
-    id: string | null,
-    userRoles: string[] | null, 
-    createDate: Date | null, 
-    email: string | null, 
-    displayName: string | null
-}
-
-const mapState = ({ user }: any) => ({
+const mapState = ({ user }: UserType) => ({
     currentUser: user.currentUser
 });
 

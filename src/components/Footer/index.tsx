@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import './styles.scss';
 
-const Footer: FC = props => {
+const Footer: FC = () => {
     return (
        <footer className="footer">
            <div className="wrap">

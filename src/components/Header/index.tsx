@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import './styles.scss';
 import {Link} from 'react-router-dom';
@@ -7,15 +7,15 @@ import logo from './../../assets/logo.png';
 import { signOutUserStart } from '../../redux/User/user.actions';
 
 
-const mapState = ({ user }) => ({
+const mapState = ({ user }: any) => ({
     currentUser: user.currentUser
 });
 
-const Header = props => {
+const Header: FC = props => {
     const dispatch = useDispatch();
     const { currentUser } = useSelector(mapState);
 
-    const signOut = () => {
+    const signOut = (): void => {
         dispatch(signOutUserStart());
     };
 

@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { signUpUserStart } from './../../redux/User/user.actions';
+import { signUpUserStart } from '../../redux/User/user.actions';
 
 import './styles.scss';
 
@@ -10,20 +10,20 @@ import Button from '../forms/Button';
 import AuthWrapper from '../AuthWrapper';
 
 
-const mapState = ({ user }) => ({
+const mapState = ({ user }: any) => ({
     currentUser: user.currentUser,
     userErr: user.userErr
 });
 
-const Signup = props => {
+const Signup: FC = props => {
     const dispatch = useDispatch();
     const history = useHistory();
     const { currentUser, userErr } = useSelector(mapState);
-    const [displayName, setDisplayName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
-    const [errors, setErorrs] = useState([]);
+    const [displayName, setDisplayName] = useState<string>('');
+    const [email, setEmail] = useState<string>('');
+    const [password, setPassword] = useState<string>('');
+    const [confirmPassword, setConfirmPassword] = useState<string>('');
+    const [errors, setErorrs] = useState<any>([]);
 
     useEffect(() => {
         if (currentUser) {
@@ -38,7 +38,7 @@ const Signup = props => {
         }
     }, [userErr]);
 
-    const reset = () => {
+    const reset = (): void => {
         setDisplayName('');
         setEmail('');
         setPassword('');
@@ -46,8 +46,8 @@ const Signup = props => {
         setErorrs([]);
     };
 
-    const handleFormSubmit = event => {
-        event.preventDefault();
+    const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
         dispatch(signUpUserStart({
             displayName,
             email,
@@ -67,7 +67,7 @@ const Signup = props => {
 
                         {errors.length > 0 && (
                             <ul>
-                                {errors.map((err, index) => {
+                                {errors.map((err: string[], index: string) => {
                                     return (
                                         <li key={index}>
                                             {err}

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, FC } from 'react';
 import { useDispatch } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
 import { checkUserSession } from './redux/User/user.actions';
@@ -25,7 +25,7 @@ import Dashboard from './pages/Dashboard';
 import Admin from './pages/Admin';
 import './default.scss';
 
-const App = props => {
+const App: FC = props => {
   const dispatch = useDispatch();
 
   useEffect(() => {

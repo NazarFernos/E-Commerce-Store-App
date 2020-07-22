@@ -9,7 +9,7 @@ import Footer from '../components/Footer';
 
 
 interface Props {
-  props: React.ReactChildren
+  props?: React.ReactChildren
 }
 
 const DashBoardLayout: FC<Props> = props => {

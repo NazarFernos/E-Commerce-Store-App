@@ -7,18 +7,15 @@ import AuthWrapper from '../AuthWrapper';
 import FormInput from '../forms/FormInput';
 import Buttons from '../forms/Button';
 import { resetPasswordStart, resetUserState } from '../../redux/User/user.actions';
+import { UserType, ConfigAuthWrapperType } from '../../types';
 
-type MapStateType = {
-    resetPasswordSuccess: any,
-    userErr: never[]
-}
 
-const mapState = ({ user }: any) => ({
+const mapState = ({ user }: UserType) => ({
     resetPasswordSuccess: user.resetPasswordSuccess,
     userErr: user.userErr
 });
 
-const EmailPassword: FC = props => {
+const EmailPassword: FC = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const { resetPasswordSuccess, userErr } = useSelector(mapState);
@@ -39,12 +36,12 @@ const EmailPassword: FC = props => {
         }
     }, [userErr]);
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
         e.preventDefault();
         dispatch(resetPasswordStart({ email }));
     }
 
-    const configAuthWrapper = {
+    const configAuthWrapper: ConfigAuthWrapperType = {
         headline: 'Email Password'
     };
 

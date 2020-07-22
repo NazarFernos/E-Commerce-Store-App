@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { useSelector } from 'react-redux'
 import UserProfile from '../UserProfile';
 import './styles.scss';
 
-const mapState = ({ user }) => ({
+
+type VerticalNavType = {
+  children?: React.ReactNode
+}
+const mapState = ({ user }: any) => ({
   currentUser: user.currentUser
 })
 
-const VerticalNav = ({ children }) => {
+const VerticalNav: FC<VerticalNavType> = ({ children }) => {
   const { currentUser } = useSelector(mapState);
 
   const configUserProfile = {

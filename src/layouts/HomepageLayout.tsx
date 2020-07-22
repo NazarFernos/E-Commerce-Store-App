@@ -4,7 +4,7 @@ import Footer from '../components/Footer';
 
 
 interface Props {
-    props: React.ReactChildren
+    props?: React.ReactChildren
 }
 
 const HomepageLayout: FC<Props> = props => {
