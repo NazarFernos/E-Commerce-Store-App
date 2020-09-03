@@ -1,14 +1,6 @@
-export type firebaseConfigType = {
-    apiKey: string,
-    authDomain: string,
-    databaseURL: string,
-    projectId: string,
-    storageBucket: string,
-    messagingSenderId: string,
-    appId: string
-}
+import { FirebaseConfigType } from "../types";
 
-export const firebaseConfig: firebaseConfigType = {
+export const firebaseConfig: FirebaseConfigType = {
     apiKey: "AIzaSyAvanfA9XN1qYz2AwFj4Du7SJ8dlraifhs",
     authDomain: "ecommerce-website-a8edb.firebaseapp.com",
     databaseURL: "https://ecommerce-website-a8edb.firebaseio.com",

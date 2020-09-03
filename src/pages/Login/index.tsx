@@ -3,7 +3,7 @@ import './styles.scss';
 import SignIn from '../../components/SignIn';
 
 
-const Login: FC = props => {
+const Login: FC = () => {
     return <SignIn />
 }
 

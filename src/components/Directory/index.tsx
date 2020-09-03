@@ -2,6 +2,7 @@ import React, {FC} from 'react';
 import ShopMen from './../../assets/shopMens.jpg'
 import ShopWomen from './../../assets/shopWomens.jpg'
 import './styles.scss'
+import { Link } from 'react-router-dom';
 
 
 const Directory: FC = () => {
@@ -12,17 +13,18 @@ const Directory: FC = () => {
                     className="item"
                     style={{backgroundImage: `url(${ShopWomen})`}}
                 >
-                    <a>
-                        Shop Womens
-                    </a>
+                    <Link to='/womenproducts'>
+                        Women Shop
+                    </Link>
                 </div>
                 <div
                     className="item" 
                     style={{backgroundImage: `url(${ShopMen})`}}
                 >
-                    <a>
-                        Shop Mens
-                    </a>
+                    <Link to='/mensproducts'>
+                        Men Shop
+                    </Link>
+                    
                 </div>
             </div>
         </div>

@@ -1,5 +1,4 @@
-import productTypes, { ADD_NEW_PRODUCT_START, DELETE_PRODUCTS_START, ProductsActionTypes, ProductData, ProductID, SetProducts, SET_PRODUCTS, FETCH_PRODUCTS_START } from "./products.types";
-import productsTypes from "./products.types";
+import { ADD_NEW_PRODUCT_START, DELETE_PRODUCTS_START, ProductsActionTypes, ProductData, ProductID, SetProducts, SET_PRODUCTS, FETCH_PRODUCTS_START, EDIT_PRODUCT_SUCCESS } from "./products.types";
 
 
 export const addProductStart = (productData: ProductData): ProductsActionTypes => ({
@@ -19,4 +18,10 @@ export const setProducts = (products: SetProducts): ProductsActionTypes => ({
 export const deleteProductStart = (productID: string): ProductsActionTypes => ({
     type: DELETE_PRODUCTS_START,
     payload: productID
-})
+});
+
+export const editProductStart = (productData: ProductData): ProductsActionTypes => ({
+    type: EDIT_PRODUCT_SUCCESS,
+    payload: productData
+});
+

@@ -1,4 +1,4 @@
-import React, {FC, ReactChild, ReactNode} from 'react';
+import React, { FC } from 'react';
 import './styles.scss';
 
 type AuthWrapperPropsType = {

@@ -2,12 +2,14 @@ import React, { FC } from 'react';
 import { useSelector } from 'react-redux'
 import UserProfile from '../UserProfile';
 import './styles.scss';
+import { UserType } from '../../types';
 
 
 type VerticalNavType = {
   children?: React.ReactNode
 }
-const mapState = ({ user }: any) => ({
+
+const mapState = ({ user }: UserType) => ({
   currentUser: user.currentUser
 })
 

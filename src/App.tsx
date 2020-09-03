@@ -24,6 +24,11 @@ import Recovery from './pages/Recovery';
 import Dashboard from './pages/Dashboard';
 import Admin from './pages/Admin';
 import './default.scss';
+import MensProducts from './pages/MensProducts';
+import WomenProducts from './pages/WomenProducts';
+import Cart from './pages/Cart';
+import Checkout from './pages/Checkout';
+
 
 const App: FC = props => {
   const dispatch = useDispatch();
@@ -66,6 +71,20 @@ const App: FC = props => {
             </DashboardLayout>
           </WithAuth>
         )} />
+        <Route path="/cart" render={() => (
+          <WithAuth>
+            <DashboardLayout>
+              <Cart />
+            </DashboardLayout>
+          </WithAuth>
+        )} />
+        <Route path="/checkout/step1" render={() => (
+          <WithAuth>
+            <DashboardLayout>
+              <Checkout />
+            </DashboardLayout>
+          </WithAuth>
+        )} />
         <Route path="/admin" render={() => (
           <WithAdminAuth>
             <AdminLayout>
@@ -73,6 +92,17 @@ const App: FC = props => {
             </AdminLayout>
           </WithAdminAuth>
         )} />
+        <Route path="/mensproducts" render={() => (
+          <MainLayout>
+            <MensProducts />
+          </MainLayout>
+        )}>
+        </Route>
+        <Route path="/womenproducts" render={() => (
+          <MainLayout>
+            <WomenProducts />
+          </MainLayout>
+        )}></Route>
       </Switch>
     </div>
   );

@@ -6,7 +6,7 @@ import { signInSuccess, signOutUserSuccess, userError, resetPasswordSuccess } fr
 import { handleResetPasswordAPI } from "./user.helpers";
 
 
-export function* getSnapshotFromUserAuth(user, additionalData={}) {
+export function* getSnapshotFromUserAuth(user, additionalData = {}) {
     try {
             const userRef = yield call(handleUserProfile, { userAuth: user, additionalData })
             const snapshot = yield userRef.get();
@@ -28,7 +28,7 @@ export function* emailSignIn({ payload: { email, password } }) {
 
            
             } catch(err) {
-                console.log(err);
+                //console.log(err);
             }
 }
 

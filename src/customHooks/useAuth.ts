@@ -1,14 +1,14 @@
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { UserType, CurrentUserType } from "../types";
+import { UserType, CurrentUserType, CurrentUSrType } from "../types";
 
 
 const mapState = ({ user }: UserType) => ({
     currentUser: user.currentUser
 });
 
-const useAuth = (): CurrentUserType => {
+const useAuth = (): CurrentUSrType => {
     const { currentUser } = useSelector(mapState);
     const history = useHistory();
 

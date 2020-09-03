@@ -1,5 +1,6 @@
 import userTypes, { UserCredentials, EmailSignIn, EMAIL_SIGN_IN_START, SignUpUserCredentials, SignUpUserStart, SIGN_UP_USER_START, Error, UserError, USER_ERROR, CHECK_USER_SESSION, CheckUserSession, SignOutUserStart, SIGN_OUT_USER_START, SignOutUserSuccess, SIGN_OUT_USER_SUCCESS, ResetPasswordStartCredentials, ResetPasswordStart, RESET_PASSWORD_START, ResetPasswordSuccess, RESET_PASSWORD_SUCCESS, ResetUserState, RESET_USER_STATE, GoogleSignInStart, GOOGLE_SIGN_IN_START } from "./user.types";
 import { auth, handleUserProfile, GoogleProvider } from "../../firebase/utils";
+import { UserType } from "../../types";
 
 
 export const emailSignInStart = (userCredentials: UserCredentials): EmailSignIn => ({
@@ -8,7 +9,7 @@ export const emailSignInStart = (userCredentials: UserCredentials): EmailSignIn 
 });
 
 
-export const signInSuccess = (user: any) => ({
+export const signInSuccess = (user: UserType) => ({
     type: userTypes.SIGN_IN_SUCCESS,
     payload: user
 });

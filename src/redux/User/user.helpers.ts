@@ -5,7 +5,7 @@ type ConfigType = {
     url: string
 };
 
-export const handleResetPasswordAPI = (email: string): Promise<any> => {
+export const handleResetPasswordAPI = (email: string): Promise<void> => {
     const config: ConfigType = {
         url: 'http://localhost:3000/login'
     };
@@ -16,7 +16,7 @@ export const handleResetPasswordAPI = (email: string): Promise<any> => {
                 resolve();
             })
             .catch(() => {
-                const err: [string] = ['Email not found. Please try again.'];
+                const err: string[] = ['Email not found. Please try again.'];
                 reject(err);
             });
     });

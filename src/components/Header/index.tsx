@@ -5,13 +5,14 @@ import {Link} from 'react-router-dom';
 
 import logo from './../../assets/logo.png';
 import { signOutUserStart } from '../../redux/User/user.actions';
+import { UserType } from '../../types';
 
 
-const mapState = ({ user }: any) => ({
+const mapState = ({ user }: UserType) => ({
     currentUser: user.currentUser
 });
 
-const Header: FC = props => {
+const Header: FC = () => {
     const dispatch = useDispatch();
     const { currentUser } = useSelector(mapState);
 
@@ -38,7 +39,12 @@ const Header: FC = props => {
                                 </Link>
                             </li>
                             <li>
-                                <span onClick={() => signOut()} style={{cursor: 'pointer'}}>
+                                <Link to="/cart">
+                                    Cart
+                                </Link>
+                            </li>
+                            <li>
+                                <span onClick={() => signOut()}>
                                     Log Out
                                 </span>
                             </li>

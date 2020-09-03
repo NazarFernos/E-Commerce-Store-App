@@ -1,16 +1,14 @@
 import React, { FC } from 'react';
 import './styles.scss';
 import userIMG from './../../assets/user.png';
+import { UserProfileType } from '../../types';
 
-type UserProfileType = {
-  props?: React.ReactNode,
-  children?: React.ReactNode,
-  currentUser: any
-}
+
 
 const UserProfile: FC<UserProfileType> = props => {
-  const { currentUser }: any = props;
-  const { displayName }: any = currentUser;
+  const { currentUser } = props;
+  const { displayName } = currentUser;
+
 
   return (
     <div className="userProfile">

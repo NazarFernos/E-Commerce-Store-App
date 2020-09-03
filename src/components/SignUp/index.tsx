@@ -8,14 +8,15 @@ import './styles.scss';
 import FormInput from '../forms/FormInput';
 import Button from '../forms/Button';
 import AuthWrapper from '../AuthWrapper';
+import { UserType } from '../../types';
 
 
-const mapState = ({ user }: any) => ({
+const mapState = ({ user }: UserType) => ({
     currentUser: user.currentUser,
     userErr: user.userErr
 });
 
-const Signup: FC = props => {
+const Signup: FC = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const { currentUser, userErr } = useSelector(mapState);
@@ -23,7 +24,7 @@ const Signup: FC = props => {
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [confirmPassword, setConfirmPassword] = useState<string>('');
-    const [errors, setErorrs] = useState<any>([]);
+    const [errors, setErorrs] = useState<string[]>([]);
 
     useEffect(() => {
         if (currentUser) {
@@ -46,7 +47,7 @@ const Signup: FC = props => {
         setErorrs([]);
     };
 
-    const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
         e.preventDefault();
         dispatch(signUpUserStart({
             displayName,
@@ -67,7 +68,7 @@ const Signup: FC = props => {
 
                         {errors.length > 0 && (
                             <ul>
-                                {errors.map((err: string[], index: string) => {
+                                {errors.map((err, index) => {
                                     return (
                                         <li key={index}>
                                             {err}

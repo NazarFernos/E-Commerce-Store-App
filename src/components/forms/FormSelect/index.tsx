@@ -1,13 +1,7 @@
 import React, { FC } from 'react';
 import './styles.scss';
+import { FormSelectType } from '../../../types';
 
-
-type FormSelectType = {
-  options: { value: string; name: string; }[]; 
-  defaultValue?: string,
-  handleChange: (e: any) => void;
-  label: string,
-}
 
 const FormSelect: FC<FormSelectType> = ({ options, defaultValue, handleChange, label, ...otherProps }) => {
   if (!Array.isArray(options) || options.length < 1) return null;

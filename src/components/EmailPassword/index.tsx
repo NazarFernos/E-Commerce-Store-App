@@ -20,7 +20,7 @@ const EmailPassword: FC = () => {
     const history = useHistory();
     const { resetPasswordSuccess, userErr } = useSelector(mapState);
     const [email, setEmail] = useState<string>('');
-    const [errors, setErrors] = useState<any>([]);
+    const [errors, setErrors] = useState<string[]>([]);
 
     useEffect(() => {
         if (resetPasswordSuccess) {
@@ -51,7 +51,7 @@ const EmailPassword: FC = () => {
 
                     {errors.length > 0 && (
                         <ul>
-                            {errors.map((e: MouseEvent, index: string) => {
+                            {errors.map((e: string, index: number) => {
                                 return (
                                     <li key={index}>
                                         {e}

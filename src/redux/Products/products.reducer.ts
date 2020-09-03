@@ -17,6 +17,19 @@ const productsReducer: Reducer = (state: initialStateType = INITIAL_STATE, actio
                 ...state,
                 products: action.payload
             }
+            // case productsTypes.EDIT_PRODUCT_SUCCESS:
+            //     return {
+            //         ...state,
+            //         products: state.products.map((product) => {
+            //             if (product.documentID === action.payload.documentID) {
+            //                 return {
+            //                     ...state,
+            //                     ...action.payload.updates
+            //                 };
+            //             }
+            //             return product;
+            //         })
+            //     };
         default:
             return state
     }

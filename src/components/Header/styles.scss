@@ -55,6 +55,11 @@
                     text-transform: uppercase;
                 }
             }
+
+            li span {
+                text-transform: uppercase;
+                cursor: pointer;
+            }
         }
     }
 }

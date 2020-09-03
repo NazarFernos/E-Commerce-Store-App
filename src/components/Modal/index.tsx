@@ -1,13 +1,13 @@
-import React, { FC, DetailedHTMLProps, FormHTMLAttributes } from 'react';
+import React, { FC  } from 'react';
 import './styles.scss';
 
 
 type ModalPropsType = {
-  hideModal: any,
+  hideModal: boolean,
   toggleModal: () => void,
   children: React.ReactNode,
-  //onSubmit?: ((event: React.FormEvent<HTMLFormElement>) => void) | undefined
 }
+
 const Modal: FC<ModalPropsType> = ({ hideModal, toggleModal, children }) => {
   if (hideModal) return null;
 

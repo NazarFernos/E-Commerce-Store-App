@@ -8,16 +8,17 @@ import './styles.scss';
 import Buttons from '../forms/Button';
 import FormInput from '../forms/FormInput';
 import AuthWrapper from '../AuthWrapper';
+import { UserType } from '../../types';
 
 type configAuthWrapperType = {
     headline: string
 }
 
-const mapState = ({ user }: any) => ({
+const mapState = ({ user }: UserType) => ({
     currentUser: user.currentUser
 });
 
-const SignIn: FC = props => {
+const SignIn: FC = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const { currentUser } = useSelector(mapState);

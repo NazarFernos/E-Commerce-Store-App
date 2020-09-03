@@ -27,7 +27,7 @@ export interface SignUpUserCredentials {
 
 
 export interface Error {
-    err?: string[]
+    err: string[]
 }
 
 export interface ResetPasswordStartCredentials {
