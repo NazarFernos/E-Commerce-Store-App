@@ -18,12 +18,18 @@ const Checkout = (props) => {
     const [surname, setSurname] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
     const [city, setCity] = useState('');
-	const basket = useSelector(state => state.basket);
-    const dispatch = useDispatch();
     const [arr, setArr] = useState([]);
     const [deliveryCity, setDeliveryCity] = useState('');
+    const [postOffice, setPostOffice] = useState('');
+
+    const basket = useSelector(state => state.basket);
+    const orders = useSelector(state => state.orders);
+    const dispatch = useDispatch();
+    
    
-    console.log(deliveryCity)
+   console.log(postOffice)
+
+
     useEffect(() => {
         
         function getNPWarehouses(url,data) {
@@ -67,8 +73,6 @@ const Checkout = (props) => {
 
 		return total;
     };
-
-
 
 	return (
 			<div className="basket">
@@ -143,15 +147,12 @@ const Checkout = (props) => {
                             } = product;
                             return (
                                 <div className="cartItem" key={index}>
-                                    <a className="cartProductImage">
-                                        <img className="thumb" src={productThumbnail} />
-                                    </a>
+                                    <div className="cartProductImage">
+                                        <img className="thumb" src={productThumbnail} alt="cart_image" />
+                                    </div>
                                     <div className="productName">
                                         {productName}
                                     </div>
-                                    {/* <div className="productPrice"> 
-                                        £{productPrice} * {quantity}=
-                                    </div> */}
                                     <div className="productSum">
                                         £{productPrice * quantity}(x{quantity})
                                     </div>
@@ -199,12 +200,15 @@ const Checkout = (props) => {
                         value={deliveryCity}
                         handleChange={(e) => setDeliveryCity(e.target.value)}
                     />
-                    <select className="selectPostOffice">
-                            <option>Choose your post office</option>
-                            {arr.map((item, index) => 
-                                <option key={index}>{item.Description}</option>
-                            )}
-                        
+                    <select 
+                        className="selectPostOffice"
+                        value={postOffice}
+                        onChange={(e) => setPostOffice(e.target.value)}
+                    >
+                        <option>Choose your post office</option>
+                        {arr.map((item, index) => 
+                            <option key={index}>{item.Description}</option>
+                        )}
                     </select>
                     
                 </div>

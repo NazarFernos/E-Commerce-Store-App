@@ -52,7 +52,7 @@ export type EmailSignInType = {
 
 export type ProductDataType = {
     productsData: {
-        products: ProductsDataType[]
+        products: ProductsDataType[],
     }
 }
 
@@ -65,7 +65,9 @@ export type ProductsDataType = {
         productPrice: string,
         productThumbnail:  string,
         maxQuantity: number,
-        quantity: number
+        quantity: number,
+        data: ProductsDataType[]
+
 } 
 
 export type HideModalType = {

@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { UserType, CurrentUserType, CurrentUSrType } from "../types";
+import { UserType, CurrentUSrType } from "../types";
 
 
 const mapState = ({ user }: UserType) => ({

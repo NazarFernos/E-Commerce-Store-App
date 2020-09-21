@@ -42,11 +42,11 @@ const MensProducts = () => {
 
                         return (
                             <div className="productItem" key={index}>
-                                {productCategory == "mens" && (
+                                {productCategory === "mens" && (
                                     <div className="manProductsItem">
-                                        <a className="productImage">
-                                            <img className="thumb" src={productThumbnail} />
-                                        </a>
+                                        <div className="productImage">
+                                            <img className="thumb" src={productThumbnail} alt="men_image" />
+                                        </div>
                                         <div>
                                             {productName}
                                         </div>

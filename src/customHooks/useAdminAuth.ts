@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { checkUserIsAdmin } from '../Utils';
 import { useHistory } from 'react-router-dom';
-import { UserType, CurrentUserType, CurrentUSrType } from '../types';
+import { UserType, CurrentUSrType } from '../types';
 
 
 const mapState = ({ user }: UserType) => ({

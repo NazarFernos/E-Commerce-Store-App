@@ -15,7 +15,7 @@ const UserProfile: FC<UserProfileType> = props => {
       <ul>
         <li>
           <div className="img">
-            <img src={userIMG} />
+            <img src={userIMG} alt="user_image" />
           </div>
         </li>
         <li>

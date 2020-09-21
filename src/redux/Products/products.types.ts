@@ -46,13 +46,15 @@ interface SetProductsAction {
 }
 
 interface FetchProductsStartAction {
-    type: typeof FETCH_PRODUCTS_START
+    type: typeof FETCH_PRODUCTS_START,
+    payload: {}
 }
 
 interface editProductsSuccess {
     type: typeof EDIT_PRODUCT_SUCCESS,
     payload: ProductData
 }
+
 
 export type ProductsActionTypes = AddNewProductStartAction | DeleteProductsStartAction | SetProductsAction | FetchProductsStartAction | editProductsSuccess;
 

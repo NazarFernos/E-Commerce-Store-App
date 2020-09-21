@@ -23,11 +23,15 @@ import Login from './pages/Login';
 import Recovery from './pages/Recovery';
 import Dashboard from './pages/Dashboard';
 import Admin from './pages/Admin';
-import './default.scss';
 import MensProducts from './pages/MensProducts';
 import WomenProducts from './pages/WomenProducts';
 import Cart from './pages/Cart';
 import Checkout from './pages/Checkout';
+import Orders from './pages/Orders';
+import Search from './pages/Search';
+
+
+import './default.scss';
 
 
 const App: FC = props => {
@@ -48,6 +52,16 @@ const App: FC = props => {
           </HomepageLayout>
         )}
         />
+        <Route exact path="/search" render={() => (
+          <MainLayout>
+            <Search />
+          </MainLayout>
+        )} />
+        <Route path="/search/:filterType" render={() => (
+          <MainLayout>
+            <Search />
+          </MainLayout>
+        )} />
         <Route path="/registration" render={() => (
           <MainLayout>
             <Registration />
@@ -89,6 +103,13 @@ const App: FC = props => {
           <WithAdminAuth>
             <AdminLayout>
               <Admin />
+            </AdminLayout>
+          </WithAdminAuth>
+        )} />
+        <Route path="/orders" render={() => (
+          <WithAdminAuth>
+            <AdminLayout>
+              <Orders />
             </AdminLayout>
           </WithAdminAuth>
         )} />

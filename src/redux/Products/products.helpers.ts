@@ -1,5 +1,4 @@
 import { firestore } from "../../firebase/utils";
-import { resolve } from "path";
 
 
 type ProductType = {
@@ -29,19 +28,39 @@ export const handleAddProduct = (product: ProductType ): Promise<void> => {
     });
 }
 
-export const handleFetchProducts = (): Promise<any> => {
+export const handleFetchProducts = ({ filterType, startAfterDoc, persistProducts=[] }: any): Promise<any> => {
     return new Promise((resolve, reject) => {
-        firestore
+
+        const pageSize = 6;
+
+        let ref = firestore
             .collection('products')
-            .get()
+            .orderBy('createdDate')
+            .limit(pageSize)
+            //.where('productCategory', '==', filterType);
+
+        if (filterType) ref = ref.where('productCategory', '==', filterType);
+        if (startAfterDoc) ref = ref.startAfter(startAfterDoc);
+
+        ref.get()
             .then(snapshot => {
-                const productsArray = snapshot.docs.map(doc => {
-                    return {
-                        ...doc.data(),
-                        documentID: doc.id
-                    }
+                const totalCount = snapshot.size;
+
+                const data = [
+                    ...persistProducts,
+                    ...snapshot.docs.map(doc => {
+                        return {
+                            ...doc.data(),
+                            documentID: doc.id
+                        }
+                    })
+                ];
+
+                resolve({
+                    data,
+                    queryDoc: snapshot.docs[totalCount - 1],
+                    isLastPage: totalCount < 1
                 });
-                resolve(productsArray);
             })
             .catch(err => {
                 reject(err);

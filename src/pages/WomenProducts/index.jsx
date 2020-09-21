@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import './styles.scss'
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchProductsStart } from '../../redux/Products/products.actions';
@@ -36,7 +36,6 @@ const WomenProducts = () => {
                             productName,
                             productThumbnail,
                             productPrice,
-                            documentID,
                             productCategory
                         } = product;
 
@@ -44,9 +43,9 @@ const WomenProducts = () => {
                             <div className="productItem" key={index}>
                                 {productCategory === "womens" && (
                                     <div className="womanProductsItem">
-                                        <a className="productImage">
-                                            <img className="thumb" src={productThumbnail} />
-                                        </a>
+                                        <div className="productImage">
+                                            <img className="thumb" src={productThumbnail} alt="woman_images" />
+                                        </div>
                                         <div>
                                             {productName}
                                         </div>

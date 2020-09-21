@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import './styles.scss';
 import Button from '../../components/forms/Button';
@@ -72,9 +72,9 @@ const Cart = (props) => {
                         } = product;
                         return (
                             <div className="cartItem" key={index}>
-                                <a className="cartProductImage">
-                                    <img className="thumb" src={productThumbnail} />
-                                </a>
+                                <div className="cartProductImage">
+                                    <img className="thumb" src={productThumbnail} alt="cart_images" />
+                                </div>
                                 <div className="productName">
                                     {productName}
                                 </div>

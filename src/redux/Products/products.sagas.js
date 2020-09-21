@@ -62,9 +62,9 @@ export function* onEditProductStart() {
     yield takeLatest(productsTypes.EDIT_PRODUCT_SUCCESS, editProduct)
 }
 
-export function* fetchProducts() {
+export function* fetchProducts({ payload }) {
     try {
-        const products = yield handleFetchProducts();
+        const products = yield handleFetchProducts(payload);
         yield put(
             setProducts(products)
         )
