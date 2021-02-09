@@ -1,12 +1,17 @@
-import orderTypes from "./orders.types";
+import ordersTypes from "./orders.types";
 
 
-const ordersReducer = (state = [], action) => {
+const INITIAL_STATE = {
+	orderHistory: [],
+};
+
+const ordersReducer = (state = INITIAL_STATE, action) => {
 	switch (action.type) {
-		case orderTypes.ADD_TO_BASKET:
-			return state.some(product => product.documentID === action.payload.documentID)
-				? state
-				: [...state, action.payload];
+		case ordersTypes.SET_USER_ORDER_HISTORY:
+			return {
+				...state,
+				orderHistory: action.payload
+			};
 		default:
 			return state;
 	}

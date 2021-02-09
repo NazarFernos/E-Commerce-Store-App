@@ -1,28 +1,47 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { Link, useHistory } from 'react-router-dom';
+import { addProduct } from '../../../redux/Cart/cart.actions';
 import Button from '../../forms/Button';
 
-const Product = ({
-    productThumbnail, 
-    productName, 
-    productPrice
-}) => {
-    if (!productThumbnail || !productName || 
+const Product = (product) => {
+    const dispatch = useDispatch();
+    const history = useHistory();
+    const {
+        documentID,
+        productThumbnail, 
+        productName, 
+        productPrice
+    } = product;
+    if (!documentID || !productThumbnail || !productName || 
         typeof productPrice === 'undefined') return null;
 
     const configAddToCartBtn = {
         type: 'button'
     };
 
+    const handleAddToCart = (product) => {
+        if (!product) return;
+        dispatch(
+            addProduct(product)
+        );
+        history.push('/cart')
+    };
+
     return (
         <div className="product">
             <div className="thumb">
-                <img src={productThumbnail} alt={productName} />
+                <Link to={`/product/${documentID}`}>
+                    <img src={productThumbnail} alt={productName} />
+                </Link>
             </div>
             <div className="details">
                 <ul>
                     <li>
                         <span className="name">
-                            {productName}
+                            <Link to={`/product/${documentID}`}>
+                                {productName}
+                            </Link>
                         </span>
                     </li>
                     <li>
@@ -32,7 +51,7 @@ const Product = ({
                     </li>
                     <li>
                         <div className="addToCart">
-                            <Button {...configAddToCartBtn}>
+                            <Button {...configAddToCartBtn} onClick={() => handleAddToCart(product)}>
                                 Add to cart
                             </Button>
                         </div>

@@ -1,30 +1,19 @@
 import { auth } from '../../firebase/utils';
 import { takeLatest, put, all, call } from 'redux-saga/effects';
 import productsTypes from './products.types';
-import { handleAddProduct, handleFetchProducts, handleDeleteProduct, handleEditProduct } from './products.helpers';
-import { setProducts, fetchProductsStart } from './products.actions';
+import { handleAddProduct, handleFetchProducts, handleFetchProduct, handleDeleteProduct, handleEditProduct } from './products.helpers';
+import { setProducts, fetchProductsStart, setProduct } from './products.actions';
 
 
-export function* addProduct({ payload: {
-    productCategory,
-    productName,
-    productThumbnail,
-    productPrice,
-    maxQuantity,
-    //quantity,
-
-}}) {
+export function* addProduct({ payload }) {
 
     try {
         const timestamp = new Date();
         yield handleAddProduct({
-            productCategory,
-            productName,
-            productThumbnail,
-            productPrice,
+            ...payload,
             productAdminUserUID: auth.currentUser.uid,
             createdDate: timestamp,
-            maxQuantity: maxQuantity,
+            //maxQuantity: maxQuantity,
             quantity: 1,
 
         });
@@ -40,26 +29,6 @@ export function* addProduct({ payload: {
 
 export function* onAddProductStart() {
     yield takeLatest(productsTypes.ADD_NEW_PRODUCT_START, addProduct)
-}
-
-export function* editProduct(documentID, { payload }) {
-    try {
-        yield put(
-            fetchProductsStart()
-        );
-        yield handleEditProduct(documentID, {
-            payload
-        })
-        yield put(
-            fetchProductsStart()
-        );
-    } catch(err) {
-        console.log(err);
-    }
-}
-
-export function* onEditProductStart() {
-    yield takeLatest(productsTypes.EDIT_PRODUCT_SUCCESS, editProduct)
 }
 
 export function* fetchProducts({ payload }) {
@@ -93,11 +62,26 @@ export function* onDeleteProductStart() {
     yield takeLatest(productsTypes.DELETE_PRODUCTS_START, deleteProduct)
 }
 
+export function* fetchProduct({ payload }) {
+    try {
+        const product = yield handleFetchProduct(payload);
+        yield put(
+            setProduct(product)
+        );
+    } catch (err) {
+        //console.log(err)
+    }
+}
+
+export function* onFetchProductStart() {
+    yield takeLatest(productsTypes.FETCH_PRODUCT_START, fetchProduct)
+}
+
 export default function* productsSagas() {
     yield all([
         call(onAddProductStart),
         call(onFetchProductsStart),
         call(onDeleteProductStart),
-        call(onEditProductStart)
+        call(onFetchProductStart)
     ])
 }

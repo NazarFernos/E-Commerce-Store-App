@@ -3,7 +3,7 @@ import './styles.scss'
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchProductsStart } from '../../redux/Products/products.actions';
 import Button from '../../components/forms/Button';
-import { addToBasket } from '../../redux/Cart/cart.actions';
+import { addProduct } from '../../redux/Cart/cart.actions';
 
 
 const mapState = ({ productsData }) => ({
@@ -14,7 +14,7 @@ const MensProducts = () => {
     const { products } = useSelector(mapState);
     const dispatch = useDispatch();
     const onAddToBasket = products => {
-		dispatch(addToBasket(products));
+		dispatch(addProduct(products));
     };
 
     useEffect(() => {

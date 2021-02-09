@@ -88,13 +88,11 @@ const ProductResults = () => {
                     if (!productThumbnail || !productName || typeof productPrice === 'undefined') return null;
                     
                     const configProduct = {
-                        productThumbnail, 
-                        productName, 
-                        productPrice
+                        ...product
                     };
 
                     return (
-                        <Product {...configProduct} />
+                        <Product key={pos} {...configProduct} />
                     );
                 })}
             </div>

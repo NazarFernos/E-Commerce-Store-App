@@ -3,7 +3,7 @@ import Button from '../forms/Button';
 
 
 const LoadMore = ({
-    onLoadMoreEvent = () => { },
+    onLoadMoreEvent = () => {},
 }) => {
     return (
         <Button onClick={() => onLoadMoreEvent()}>

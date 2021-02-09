@@ -1,47 +1,51 @@
 import { takeLatest, put, all, call } from 'redux-saga/effects';
-import { handleAddProductToCart } from './orders.helpers';
-import { fetchProductsStart } from '../Products/products.actions';
-import cartTypes from './orders.types';
-import { handleDeleteProduct } from '../Products/products.helpers';
+import { auth } from '../../firebase/utils';
+import { clearCart } from '../Cart/cart.actions';
+import { setUserOrderHistory } from './orders.actions';
+import { handleGetUserOrderHistory, handleSaveOrder } from './orders.helpers';
+import ordersTypes from './orders.types';
 
 
+export function* getUserOrderHistory({ payload }) {
+    try {
+        const history = yield handleGetUserOrderHistory(payload);
+        yield put(
+            setUserOrderHistory(history)
+        );
+    } catch (err) {
+        console.log(err)
+    }
 
-export function* addProductToCart({ payload }) {
-
-    // try {
-    //     yield handleAddProductToCart(payload);
-    //     yield put(
-    //         fetchProductsStart()
-    //     );
-
-    // } catch (error) {
-    //     console.log(error)
-    // }
 }
 
-export function* onAddProductToCart() {
-    //yield takeLatest(cartTypes.ADD_TO_BASKET, addProductToCart)
+export function* onGetUserOrderHistoryStart() {
+    yield takeLatest(ordersTypes.GET_USER_ORDER_HISTORY_START, getUserOrderHistory)
 }
 
-export function* deleteProduct({ payload }) {
-    // try {
-    //     yield handleDeleteProduct(payload);
-    //     yield put(
-    //         fetchProductsStart()
-    //     );
-
-    // } catch (error) {
-    //     console.log(error)
-    // }
+export function* saveOrder({ payload }) {
+    try {
+        const timestamps = new Date();
+        yield handleSaveOrder({
+            ...payload,
+            orderUserID: auth.currentUser.uid,
+            orderCreatedDate: timestamps
+        });
+        yield  put(
+            clearCart()
+        )
+    } catch (err) {
+        console.log(err)
+    }
 }
 
-export function* onDeleteProductStart() {
-    //yield takeLatest(cartTypes.REMOVE_FROM_BASKET, deleteProduct)
+export function* onSaveOrderHistoryStart() {
+    yield takeLatest(ordersTypes.SAVE_ORDER_HISTORY_START, saveOrder);
 }
 
-export default function* cartSagas() {
-    // yield all([
-    //     call(onAddProductToCart),
-    //     call(onDeleteProductStart)
-    // ])
+
+export default function* ordersSagas() {
+    yield all([
+        call(onSaveOrderHistoryStart),
+        call(onGetUserOrderHistoryStart),
+    ])
 }

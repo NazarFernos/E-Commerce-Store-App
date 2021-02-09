@@ -1,17 +1,22 @@
 import cartTypes from "./cart.types";
 
-export const addToBasket = product => ({
-	type: cartTypes.ADD_TO_BASKET,
-	payload: product
+export const addProduct = nextCartItem => ({
+	type: cartTypes.ADD_TO_CART,
+	payload: nextCartItem
 });
 
-export const removeFromBasket = productID => ({
-	type: cartTypes.REMOVE_FROM_BASKET,
-	payload: productID
+export const removeCartItem = cartItem => ({
+	type: cartTypes.REMOVE_CART_ITEM,
+	payload: cartItem
 });
 
-export const clearBasket = () => ({
-	type: cartTypes.CLEAR_BASKET
+export const reduceCartItem = cartItem => ({
+	type: cartTypes.REDUCE_CART_ITEM,
+	payload: cartItem
+});
+
+export const clearCart = () => ({
+	type: cartTypes.CLEAR_CART
 });
 
 export const addQtyItem = productID => ({

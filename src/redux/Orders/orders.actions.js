@@ -1,25 +1,16 @@
-import orderTypes from "./orders.types";
+import ordersTypes from "./orders.types";
 
-export const addToBasket = product => ({
-	type: orderTypes.ADD_TO_BASKET,
-	payload: product
+export const saveOrderHistory = order => ({
+	type: ordersTypes.SAVE_ORDER_HISTORY_START,
+	payload: order
 });
 
-export const removeFromBasket = productID => ({
-	type: orderTypes.REMOVE_FROM_BASKET,
-	payload: productID
+export const getUserOrderHistory = uid => ({
+	type: ordersTypes.GET_USER_ORDER_HISTORY_START,
+	payload: uid
 });
 
-export const clearBasket = () => ({
-	type: orderTypes.CLEAR_BASKET
-});
-
-export const addQtyItem = productID => ({
-	type: orderTypes.ADD_QTY_ITEM,
-	payload: productID
-});
-
-export const minusQtyItem = productID => ({
-	type: orderTypes.MINUS_QTY_ITEM,
-	payload: productID
+export const setUserOrderHistory = history => ({
+	type: ordersTypes.SET_USER_ORDER_HISTORY,
+	patload: history
 });
