@@ -105,7 +105,7 @@ const Admin = () => {
         </ul>
         <ul>
           <li>
-            <Link to="/orders">
+            <Link to="/dashboard">
               <Button>
                 Orders
               </Button>

@@ -32,14 +32,14 @@ const Header = () => {
 
                 <nav>
                     <ul>
-                        <li>
+                        <li key='home'>
                             <Link to="/">
                                 Home
                             </Link>
                         </li>
                     
                     
-                        <li>
+                        <li key='search'>
                             <Link to="/search">
                                 Search
                             </Link>
@@ -51,18 +51,18 @@ const Header = () => {
 
                     <ul>
 
-                        <li>
+                        <li key='cart'>
                             <Link to="/cart">
                                 Cart ({totalNumCartItems})
                             </Link>
                         </li>
                         {currentUser && [
-                                <li>
+                                <li key='myaccount'>
                                     <Link to="/dashboard">
                                         My account
                                     </Link>
                                 </li>,
-                                <li>
+                                <li key='logout'>
                                     <span onClick={() => signOut()}>
                                         Log Out
                                     </span>
@@ -71,12 +71,12 @@ const Header = () => {
                     
 
                         {!currentUser && [
-                            <li>
+                            <li key='register'>
                                 <Link to="/registration">
                                     Register
                                 </Link>
                             </li>,
-                            <li>
+                            <li key='login'>
                                 <Link to="/login">
                                     Login
                                 </Link>

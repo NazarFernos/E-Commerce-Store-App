@@ -8,5 +8,7 @@ module.exports = {
     'google',
   ],
   rules: {
+    'max-len': 0,
+    'indent': 0,
   },
 };

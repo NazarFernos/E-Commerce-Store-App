@@ -1,16 +1,20 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import OrderHistory from '../../components/OrderHistory';
 import { getUserOrderHistory } from '../../redux/Orders/orders.actions';
+
 import './styles.scss';
 
 
-const mapState = ({ user }) => ({
-    currentUser: user.currentUser
+const mapState = ({ user, ordersData }) => ({
+    currentUser: user.currentUser,
+    orderHistory: ordersData.orderHistory.data
 });
 
 const Dashboard = props => {
     const dispatch = useDispatch();
-    const { currentUser } = useSelector(mapState);
+    const { currentUser, orderHistory } = useSelector(mapState);
+    console.log(orderHistory)
 
     useEffect(() => {
         dispatch(
@@ -18,9 +22,13 @@ const Dashboard = props => {
         );
     }, []);
     return (
-        <h1>
-            Your loggin in!
-        </h1>
+        <div>
+            <h1>
+                Order History
+            </h1>
+
+            <OrderHistory orders={orderHistory} />
+        </div>
     );
 };
 

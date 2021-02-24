@@ -30,10 +30,10 @@ import Cart from './pages/Cart';
 import Orders from './pages/Orders';
 import Search from './pages/Search';
 import ProductDetails from './pages/ProductDetails';
-
+import Payment from './pages/Payment';
+import Order from './pages/Order';
 
 import './default.scss';
-import Payment from './pages/Payment';
 
 
 const App = props => {
@@ -104,13 +104,13 @@ const App = props => {
             </DashboardLayout>
           </WithAuth>
         )} />
-        {/* <Route path="/checkout/step1" render={() => (
+        <Route path="/order/:orderID" render={() => (
           <WithAuth>
             <DashboardLayout>
-              <Checkout />
+              <Order />
             </DashboardLayout>
           </WithAuth>
-        )} /> */}
+        )} />
         <Route path="/admin" render={() => (
           <WithAdminAuth>
             <AdminLayout>

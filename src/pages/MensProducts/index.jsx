@@ -3,71 +3,109 @@ import './styles.scss'
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchProductsStart } from '../../redux/Products/products.actions';
 import Button from '../../components/forms/Button';
-import { addProduct } from '../../redux/Cart/cart.actions';
+import { useParams } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import FormSelect from '../../components/forms/FormSelect';
+import Product from '../../components/ProductResult/Product';
+import LoadMore from '../../components/LoadMore';
 
 
 const mapState = ({ productsData }) => ({
-    products: productsData.products
+    products: productsData.products,
   });
 
-const MensProducts = () => {
-    const { products } = useSelector(mapState);
+const WomenProducts = () => {
     const dispatch = useDispatch();
-    const onAddToBasket = products => {
-		dispatch(addProduct(products));
-    };
+    const history = useHistory();
+    const { products } = useSelector(mapState);
+    const { filterType = "mens" } = useParams();
+
+    const { data, queryDoc, isLastPage } = products;
 
     useEffect(() => {
         dispatch(
-        fetchProductsStart()
-        );
-    }, []);
+            fetchProductsStart({ filterType })
+        )
+    }, [filterType]);
+
+    const handleFilter = (e) => {
+        const nextFilter = e.target.value;
+        history.push(`/search/${nextFilter}`);
+    }
+
+    const configFilters = {
+        defaultValue: filterType,
+        options: [{
+          name: 'Show all',
+          value: ''
+        }, {
+          name: 'Mens',
+          value: 'mens'
+        }, {
+          name: 'Womens',
+          value: 'womens'
+        }],
+        handleChange: handleFilter
+    };
+
+    const handleLoadMore = () => {
+        dispatch(
+            fetchProductsStart({ 
+                filterType, 
+                startAfterDoc: queryDoc,
+                persistProducts: data
+            })
+        )
+    }
+
+    const configLoadMore = {
+        onLoadMoreEvent: handleLoadMore,
+    }
+
+    if (!Array.isArray(data)) return null;
+
+    if (data.length < 1) {
+        return (
+            <div className="products">
+                <FormSelect {...configFilters} />
+                <p>
+                    No search results.
+                </p>
+            </div>
+        )
+    }
 
     return (
-        <div className="mensProducts">
+        <div className="products">
           <div>
                 <h1>
-                  Mens Products Here!
-                </h1>
-                             
-                <section className="container">
-                    <ul className="catalog">
-                        {products.map((product, index) => {
-                        const {
-                            productName,
-                            productThumbnail,
-                            productPrice,
-                            productCategory
-                        } = product;
+                  Man Products Here!
+                </h1>            
+                
+                <FormSelect {...configFilters} />
+            
+                <div className="productResults">
+                    {data.map((product, pos) => {
+                        const { productThumbnail, productName, productPrice } = product;
+                        if (!productThumbnail || !productName || typeof productPrice === 'undefined') return null;
+                        
+                        const configProduct = {
+                            ...product
+                        };
 
                         return (
-                            <div className="productItem" key={index}>
-                                {productCategory === "mens" && (
-                                    <div className="manProductsItem">
-                                        <div className="productImage">
-                                            <img className="thumb" src={productThumbnail} alt="men_image" />
-                                        </div>
-                                        <div>
-                                            {productName}
-                                        </div>
-                                        <div>
-                                            £{productPrice}
-                                        </div>
-                                        <div>
-                                            <Button onClick={() => onAddToBasket(product) }>
-                                                Buy
-                                            </Button>
-                                        </div>
-                                    </div>
-                                )}
-                            </div>
-                        )
-                        })}
-                    </ul>
-                </section>
+                            <Product key={pos} {...configProduct} />
+                        );
+                    })}
+                </div>
+
+                {!isLastPage && (
+                    <LoadMore {...configLoadMore} />
+                )}
+                
           </div>
         </div>
     )
 }
 
-export default MensProducts;
+export default WomenProducts;

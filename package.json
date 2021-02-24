@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^4.11.3",
     "@stripe/react-stripe-js": "^1.2.0",
     "@stripe/stripe-js": "^1.11.0",
     "@testing-library/jest-dom": "^4.2.4",
@@ -23,6 +24,7 @@
     "enzyme-adapter-react-16": "^1.15.4",
     "firebase": "^7.19.1",
     "jest-enzyme": "^7.1.2",
+    "moment": "^2.29.1",
     "node-fetch": "^2.6.0",
     "node-sass": "^4.14.1",
     "novaposhta": "^1.1.0",

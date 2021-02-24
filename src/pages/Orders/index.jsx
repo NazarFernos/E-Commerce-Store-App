@@ -5,7 +5,6 @@ import './styles.scss';
 
 const Orders = () => {
   const orders = useSelector(state => state.orders);
-  console.log(orders)
 
   return (
 			<div className="orders-list">

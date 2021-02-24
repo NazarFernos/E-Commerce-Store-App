@@ -8,7 +8,7 @@
   
   .modal {
     position: absolute;
-    top: 10%; 
+    top: 17%; 
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
     -moz-transform: translate(-50%, -50%);
@@ -19,4 +19,26 @@
     max-width: 60rem;
     height: auto;
     min-height: 40.0rem;
+  }
+
+  @media only screen and (max-width: 980px) {
+    .manageProducts {
+      table {
+        width: 100%;
+  
+        .results {
+          width: 100%;
+  
+          tr td {
+            display: block;
+            width: 100%;
+  
+            img {
+              display: block;
+              width: 100% !important;
+            }
+          }
+        }
+      }
+    }
   }
