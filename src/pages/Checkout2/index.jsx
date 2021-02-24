@@ -10,7 +10,7 @@ import './styles.scss';
 //import fetch from 'node-fetch';
 
 
-const apiKey = "047c5f995d11470acb10bc7c9aeec6b8";
+const apiKey = "";
 const url = 'https://api.novaposhta.ua/v2.0/json/';
 
 const Checkout = (props) => {
@@ -54,7 +54,7 @@ const Checkout = (props) => {
     }, [deliveryCity]);
 
 // useEffect(() => {
-//     const api = new NovaPoshta({ apiKey: "047c5f995d11470acb10bc7c9aeec6b8" });
+//     const api = new NovaPoshta({ apiKey: "" });
 //     api.address.getCities({Ref: "e68be3b9-ca66-11e9-b0c5-005056b24375"}).then((json) => setArr(json.data));
 // }, [setArr]);
 
